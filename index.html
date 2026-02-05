@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIVIC FIX | AI Audit Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-mint: #2ECC71;
+            --text-dark: #333333;
+            --bg-white: #FFFFFF;
+            --accent-grey: #F8F9FA;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .organic-curve {
+            border-bottom-left-radius: 40%;
+            border-top-left-radius: 10%;
+        }
+        .mint-button {
+            background-color: var(--primary-mint);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .mint-button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+        .float-card {
+            background: white;
+            box-shadow: 0px 20px 40px rgba(0,0,0,0.06);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .float-card:hover {
+            transform: translateY(-5px);
+        }
+        input, select {
+            border-radius: 0px !important;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
+  }
+}
+</script>
+</head>
+<body class="antialiased overflow-x-hidden">
+    <div id="root"></div>
+</body>
+</html>

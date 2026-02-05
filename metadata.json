@@ -1,0 +1,7 @@
+{
+  "name": "Civic-Fix AI",
+  "description": "A mobile-responsive tool for citizens to report civic issues, audit repair costs using AI, and generate official complaints.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
