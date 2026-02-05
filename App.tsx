@@ -206,6 +206,11 @@ const App: React.FC = () => {
     setSelectedLocation(""); 
   };
 
+  const onPageChange = (page: string) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleStartAudit = () => {
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
@@ -221,7 +226,7 @@ const App: React.FC = () => {
 
   if (!isLoggedIn) {
     return (
-      <Layout currentPage={currentPage} onPageChange={setCurrentPage}>
+      <Layout currentPage={currentPage} onPageChange={onPageChange}>
         <div className="max-w-md mx-auto py-12 px-6">
           <div className="bg-white border border-gray-100 p-10 rounded-3xl shadow-2xl shadow-gray-100">
             <h2 className="text-3xl font-black text-[#333] mb-2">Member Access</h2>
@@ -511,7 +516,17 @@ const App: React.FC = () => {
 
   const renderServices = () => (
     <div className="max-w-4xl mx-auto px-6 py-12 animate-in fade-in duration-500">
-      <h2 className="text-4xl font-black text-[#333] mb-12 text-center tracking-tighter uppercase">Our Civic Services</h2>
+      <div className="flex justify-between items-center mb-12">
+        <button 
+          onClick={() => onPageChange('home')}
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#2ECC71] transition-all group"
+        >
+          <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 19l-7-7 7-7" strokeWidth="3" /></svg>
+          Back to Home
+        </button>
+        <h2 className="text-4xl font-black text-[#333] tracking-tighter uppercase">Our Services</h2>
+        <div className="w-20" />
+      </div>
       
       <div className="flex flex-col gap-10">
         <div className="bg-[#F8F9FA] p-10 rounded-[2rem] flex flex-col md:flex-row items-center gap-10 group hover:bg-white hover:shadow-2xl hover:shadow-gray-100 transition-all duration-500">
@@ -563,6 +578,15 @@ const App: React.FC = () => {
         </div>
       </div>
 
+      <div className="mt-16 flex justify-center">
+        <button 
+          onClick={() => onPageChange('home')}
+          className="bg-[#333] text-white px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#2ECC71] transition-all shadow-xl shadow-[#333]/10"
+        >
+          ⬅️ Back to Home Dashboard
+        </button>
+      </div>
+
       {activeServiceModal === 'vision' && (
         <ServiceModal title="Computer Vision Pipeline" onClose={() => setActiveServiceModal(null)}>
           <p className="mb-6">We utilize <strong>Google Gemini</strong>'s Multimodal Vision Transformer. The model does not just 'see' the image; it performs <strong>Semantic Segmentation</strong> to isolate the damaged area (e.g., the specific pothole) from the background environment.</p>
@@ -590,13 +614,19 @@ const App: React.FC = () => {
 
   const renderAbout = () => (
     <div className="max-w-7xl mx-auto px-6 py-12 animate-in fade-in duration-700">
-      <div className="text-center mb-24">
-        <h2 className="text-5xl font-black text-[#333] mb-4 tracking-tighter uppercase">Our Mission: Transparency</h2>
-        <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">Bridging the gap between citizens and municipal efficiency</p>
+      <div className="flex justify-between items-center mb-12">
+        <button 
+          onClick={() => onPageChange('home')}
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#2ECC71] transition-all group"
+        >
+          <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 19l-7-7 7-7" strokeWidth="3" /></svg>
+          Back to Home
+        </button>
+        <h2 className="text-4xl font-black text-[#333] tracking-tighter uppercase">About Civic Fix</h2>
+        <div className="w-20" />
       </div>
 
       <div className="flex flex-col gap-32">
-        {/* Section 1: The Problem */}
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div className="md:w-1/2">
             <img 
@@ -613,7 +643,6 @@ const App: React.FC = () => {
 
         <div className="h-px bg-gray-100 w-full" />
 
-        {/* Section 2: The Solution */}
         <div className="flex flex-col md:flex-row-reverse items-center gap-16">
           <div className="md:w-1/2">
             <div className="relative">
@@ -640,14 +669,15 @@ const App: React.FC = () => {
         <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] mb-4">Development Team</h4>
         <h3 className="text-4xl font-black text-[#333] mb-8 tracking-tighter uppercase">Created by Team OG</h3>
         <p className="text-gray-500 max-w-lg mx-auto font-medium">Combining engineering excellence with modern software design to fix our cities one audit at a time.</p>
+        <button 
+          onClick={() => onPageChange('home')}
+          className="mt-12 bg-[#333] text-white px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#2ECC71] transition-all"
+        >
+          ⬅️ Back to Home
+        </button>
       </div>
     </div>
   );
-
-  const onPageChange = (page: string) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <Layout isLoggedIn={true} onLogout={handleLogout} currentPage={currentPage} onPageChange={onPageChange}>

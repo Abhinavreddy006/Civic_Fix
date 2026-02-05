@@ -24,7 +24,6 @@ export const AuditResult: React.FC<AuditResultProps> = ({ audit, image, location
 
   const handleDownload = () => {
     const element = document.createElement("a");
-    // Explicitly use the current state of editedEmail
     const file = new Blob([editedEmail], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
     element.download = `CivicFix_Report_${audit.issueName.replace(/\s+/g, '_')}.txt`;
@@ -43,12 +42,11 @@ export const AuditResult: React.FC<AuditResultProps> = ({ audit, image, location
     }
   };
 
-  // Construct the mailto link parameters using the latest state
   const emailSubject = `URGENT: Safety Hazard Report - ${audit.issueName} at ${location}`;
   const mailtoLink = `mailto:${audit.authorityEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(editedEmail)}`;
 
   return (
-    <div className="flex flex-col gap-12 animate-in fade-in duration-700 max-w-7xl mx-auto px-6">
+    <div className="flex flex-col gap-12 animate-in fade-in duration-700 max-w-7xl mx-auto px-6 pb-20">
       <div className="flex flex-col md:flex-row gap-16">
         {/* Col 1: Visual Evidence */}
         <div className="md:w-1/2 flex flex-col gap-6">
@@ -166,6 +164,17 @@ export const AuditResult: React.FC<AuditResultProps> = ({ audit, image, location
           </div>
         </div>
       )}
+
+      {/* Persistent Reset Option */}
+      <div className="flex justify-center mt-12">
+        <button 
+          onClick={onReset}
+          className="flex items-center gap-3 px-12 py-6 bg-gray-50 border border-gray-100 rounded-full text-gray-400 font-black text-xs uppercase tracking-widest hover:bg-[#F8F9FA] hover:text-[#333] hover:border-gray-200 transition-all shadow-sm active:scale-95 group"
+        >
+          <span className="group-hover:rotate-180 transition-transform duration-500">🔄</span>
+          Start New Audit (Go Back)
+        </button>
+      </div>
     </div>
   );
 };
